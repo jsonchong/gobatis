@@ -25,7 +25,7 @@ func prepare(itf *Interface) (impl *Implement) {
 	if strings.HasSuffix(impl.Name, "Persister") {
 		impl.Name = impl.Name[:len(impl.Name)-2]
 	} else {
-		impl.Name += impl.Name + "Impl"
+		impl.Name = impl.Name + "Impl"
 	}
 
 	for _, f := range itf.Methods {
