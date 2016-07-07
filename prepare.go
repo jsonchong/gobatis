@@ -287,7 +287,7 @@ next:
 func calcMarshals(m *Method) {
 	for _, fm := range m.Fragments {
 		for _, prop := range fm.Args {
-			if isBuiltin(prop.Type) {
+			if isBuiltin(prop.Type) && prop.Slice == "" {
 				continue
 			}
 			if prop.Alias != "" {
@@ -311,7 +311,7 @@ func calcMarshals(m *Method) {
 func calcUnmarshals(m *Method) {
 	for _, prop := range m.Scans {
 		// prop.Scope = p.Var
-		if prop.Alias != "" || isBuiltin(prop.Type) {
+		if prop.Alias != "" || (isBuiltin(prop.Type) && prop.Slice == "") {
 			continue
 		}
 		prop.Concat = "_"
